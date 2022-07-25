@@ -2,7 +2,7 @@ import { DocumentNode, ExecutionResult } from 'graphql';
 export { DocumentNode };
 
 import { Observable } from '../../utilities';
-
+import { ServerError } from '../utils';
 export interface GraphQLRequest {
   query: DocumentNode;
   variables?: Record<string, any>;
@@ -25,6 +25,7 @@ export interface FetchResult<
   TContext = Record<string, any>,
   TExtensions = Record<string, any>
 > extends ExecutionResult<TData, TExtensions> {
+  error_network?: ServerError;
   data?: TData | null | undefined;
   extensions?: TExtensions;
   context?: TContext;

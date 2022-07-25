@@ -10,6 +10,7 @@ import { ObservableQuery } from './ObservableQuery';
 import { QueryOptions } from './watchQueryOptions';
 import { Cache } from '../cache';
 import { IsStrictlyAny } from '../utilities';
+import { ServerError } from '../link/utils';
 
 export { TypedDocumentNode } from '@graphql-typed-document-node/core';
 
@@ -135,6 +136,7 @@ export type OperationVariables = Record<string, any>;
 export type ApolloQueryResult<T> = {
   data: T;
   errors?: ReadonlyArray<GraphQLError>;
+  error_network?: ServerError;
   error?: ApolloError;
   loading: boolean;
   networkStatus: NetworkStatus;
